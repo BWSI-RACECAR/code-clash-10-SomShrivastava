@@ -70,12 +70,15 @@ Input: 3, 2 Output: {
 
 class Solution:
     def create_action_dict(self, num_players, num_actions):
-        action_dict = {}
-        for i in range(num_players ** num_actions):
-            actions = tuple(i // (num_actions ** j) % num_actions for j in range(num_players))
-            action_dict[i] = actions
-            action_dict[actions] = i
-        return action_dict
+        result = {}
+        combs = num_actions ** num_players
+
+        for i in range(combs):
+            action = tuple(i // (num_actions ** j) % num_actions for j in range(num_players))
+            result[i] = action
+            result[action] = i
+
+        return result
         
 def main():
     input1 = input()
